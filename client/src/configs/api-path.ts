@@ -1,0 +1,17 @@
+const ROUTER_AUTH = "auth"
+const ROUTER_USER = "users"
+const ROUTER_DRIVERS = "drivers"
+
+export const API_PATH_LOGIN = ROUTER_AUTH + "/login"
+export const API_PATH_VERIFY_USER = ROUTER_USER + "/me"
+export const API_PATH_PRODUCT_SIZE = "product-sizes"
+export const API_PATH_PRODUCT_BRAND = "product-brands"
+export const API_PATH_PRODUCT_MATERIAL = "product-materials"
+export const API_PATH_PRODUCT_COLOR_GROUP = "product-color-groups"
+export const API_PATH_PRODUCT_COLOR = "product-colors"
+export const API_PATH_USER_PRODUCT_TYPE = "user-product-types"
+export const API_PATH_SERVICE_PRODUCT = "service-products"
+export const API_PATH_SERVICE_PRODUCT_VARIANT = "service-product-variants"
+export const API_PATH_DRIVER = ROUTER_DRIVERS
+export const API_PATH_REGISTER_DRIVER = ROUTER_DRIVERS + "/register"
+export const API_PATH_SUBSCRIPTION_SERVICE = "subscription-services"
