@@ -1,7 +1,6 @@
 
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, Inject, ForbiddenException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Role } from 'constant';
 import { FastifyRequest } from 'fastify';
 import { verify } from 'jsonwebtoken';
 import { AuthService } from 'resources/auth/auth.service';
@@ -39,11 +38,8 @@ export class RolesGuard implements CanActivate {
             throw new ForbiddenException();
         }
 
-        if (roles.some((role) => role === Role.DRIVER)) {
-            await this.authService.authenticateDriver(data["id"])
-        } else {
-            await this.authService.authenticate(data["id"])
-        }
+        await this.authService.authenticate(data["id"])
+
 
 
         return true

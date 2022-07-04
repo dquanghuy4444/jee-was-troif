@@ -31,16 +31,3 @@ export class ChangePasswordRequest {
     @Length(6, 20)
     newPassword: string;
 }
-
-export class ChangeDriverPasswordRequest {
-    @IsNotEmpty()
-    phoneNumber: string;
-
-    @IsNotEmpty()
-    @Length(6, 6)
-    oldPassword: string;
-
-    @IsNotEmpty()
-    @Length(6, 6)
-    newPassword: string;
-}

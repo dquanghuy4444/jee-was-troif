@@ -1,17 +1,16 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { sign } from 'jsonwebtoken';
-import { ChangeDriverPasswordRequest, ChangePasswordRequest, ForgetPassRequest, LoginRequest, RegisterRequest } from './dto/auth-req.dto';
+import { ChangePasswordRequest, ForgetPassRequest, LoginRequest, RegisterRequest } from './dto/auth-req.dto';
 import { LoginResponse } from './dto/auth-res.dto';
-import { ERROR_MESSENGER_INVALID_PHONE_NUMBER, ERROR_MESSENGER_PASSWORD_SAME, Role, UserRole } from 'constant';
-
-
+import { ERROR_MESSENGER_INVALID_PHONE_NUMBER, ERROR_MESSENGER_PASSWORD_SAME, Role } from 'constant';
+import { UserService } from 'resources/user/user.service';
 
 const SECRET_OR_PUBLIC_KEY = process.env["SECRET_OR_PUBLIC_KEY"] || "SECRET_OR_PUBLIC_KEY"
 
 @Injectable()
 export class AuthService {
     constructor(
-        @Inject(UserService) private readonly userService: UserService    ) { }
+        @Inject(UserService) private readonly userService: UserService) { }
 
     async register(registerRequest: RegisterRequest): Promise<LoginResponse> {
 
@@ -42,7 +41,7 @@ export class AuthService {
     }
 
     async forgetPassword(request: ForgetPassRequest): Promise<void> {
-        const { phoneNumber, password, firebaseToken } = request;
+        const { phoneNumber, password } = request;
 
         await this.userService.changePassword(phoneNumber, password)
     }
@@ -50,9 +49,10 @@ export class AuthService {
     async authenticate(id: string): Promise<void> {
         await this.userService.findById(id)
 
+    }
 
 
-    private createToken(userId: string, role: Role | UserRole): string {
+    private createToken(userId: string, role: Role): string {
         return sign(
             {
                 id: userId,

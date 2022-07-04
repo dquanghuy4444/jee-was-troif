@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { compare, hash } from 'bcrypt';
-import { ERROR_MESSENGER_INVALID_PASSWORD, UserRole } from 'constant';
+import { ERROR_MESSENGER_INVALID_PASSWORD, Role } from 'constant';
 import { CallbackWithoutResultAndOptionalError, Document } from 'mongoose';
 
 @Schema({ timestamps: true })
@@ -21,8 +21,8 @@ export class User extends Document {
     @Prop()
     referrer?: string;
 
-    @Prop({ required: true, type: String, default: UserRole.USER })
-    role: UserRole;
+    @Prop({ required: true, type: String, default: Role.USER })
+    role: Role;
 
     @Prop()
     updatedAt: Date;

@@ -1,4 +1,4 @@
-import { UserRole } from "constant";
+import { Role } from "constant";
 import { User } from "../entities/user.entity";
 
 export class UserResponse {
@@ -8,7 +8,7 @@ export class UserResponse {
     email: string;
     updatedAt: Date;
     createdAt: Date;
-    role: UserRole;
+    role: Role;
 
     constructor(user: User) {
         this.id = user.id as string;
